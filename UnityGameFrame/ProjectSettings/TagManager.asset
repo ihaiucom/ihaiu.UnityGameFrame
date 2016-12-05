@@ -4,12 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Fx
-  - explosion
-  - ground
-  - missile
-  - shield
   - UICamera
+  - War_Terrain
+  - War_Unit
   layers:
   - Default
   - TransparentFX
@@ -19,70 +16,40 @@ TagManager:
   - UI
   - 
   - 
-  - Unit
-  - ObstacleRay
-  - ObstacleStar
-  - Terrain
-  - WorldUI
-  - Solider
-  - UIForward
-  - Background
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - War_Terrain
+  - War_Unit
+  - War_Obstacle
+  - Layer11
+  - Layer12
+  - Layer13
+  - Layer14
+  - Layer15
+  - Layer16
+  - Layer17
+  - Layer18
+  - Layer19
+  - Layer20
+  - Layer21
+  - Layer22
+  - Layer23
+  - Layer24
+  - Layer25
+  - Layer26
+  - Layer27
+  - Layer28
+  - Layer29
+  - Layer30
+  - Layer31
   m_SortingLayers:
   - name: War_Terrain
-    uniqueID: 3944094983
-    locked: 0
-  - name: War_BuildGround
-    uniqueID: 3496464625
+    uniqueID: 2
     locked: 0
   - name: War_Shadow
-    uniqueID: 2673143337
-    locked: 0
-  - name: War_Dust
-    uniqueID: 2556766567
-    locked: 0
-  - name: War_AtkRadius
-    uniqueID: 286331771
-    locked: 0
-  - name: War_Wall
-    uniqueID: 1063991441
-    locked: 0
-  - name: Home_Background
-    uniqueID: 185883147
-    locked: 0
-  - name: Home_HitArea
-    uniqueID: 2863294277
+    uniqueID: 1073741824
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: War_Unit
-    uniqueID: 4208182801
-    locked: 0
-  - name: War_DarkScreen
-    uniqueID: 3976193115
-    locked: 0
-  - name: War_HeroSkill
-    uniqueID: 418011697
-    locked: 0
-  - name: War_SkillEffect
-    uniqueID: 351664053
-    locked: 0
-  - name: New Layer
-    uniqueID: 2468029589
+    uniqueID: 1
     locked: 0

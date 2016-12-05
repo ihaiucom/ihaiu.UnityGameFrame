@@ -1,67 +1,46 @@
-﻿using UnityEngine;
-using System.Collections;
-
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
-
-namespace Games
+﻿namespace Games
 {
-    public class GameLayer 
-    {
-        #region Unity Default Lock
-        public const int Default            = 1 << 0;
-        public const int TransparentFX      = 1 << 1;
-        public const int IgnoreRaycast      = 1 << 2;
-        public const int Layer3             = 1 << 3;
-        public const int Water              = 1 << 4;
-        public const int UI                 = 1 << 5;
-        public const int Layer6             = 1 << 6;
-        public const int Layer7             = 1 << 7;
-        #endregion
+	public partial class GameLayer
+	{
+		#region Unity Default Lock
+		public const int Default			=	1 << 0;
+		public const int TransparentFX			=	1 << 1;
+		public const int Ignore_Raycast			=	1 << 2;
+		public const int Layer3			=	1 << 3;
+		public const int Water			=	1 << 4;
+		public const int UI			=	1 << 5;
+		public const int Layer6			=	1 << 6;
+		public const int Layer7			=	1 << 7;
+		#endregion
 
 
-        #region Custom War 
-        public const int War_Terrain            = 1 << 8;
-        public const int War_Unit               = 1 << 9;
-        public const int War_Obstacle           = 1 << 10;
-        #endregion
+		public const int War_Terrain			=	1 << 8;
+		public const int War_Unit			=	1 << 9;
+		public const int War_Obstacle			=	1 << 10;
+		public const int Layer11			=	1 << 11;
+		public const int Layer12			=	1 << 12;
+		public const int Layer13			=	1 << 13;
+		public const int Layer14			=	1 << 14;
+		public const int Layer15			=	1 << 15;
+		public const int Layer16			=	1 << 16;
+		public const int Layer17			=	1 << 17;
+		public const int Layer18			=	1 << 18;
+		public const int Layer19			=	1 << 19;
+		public const int Layer20			=	1 << 20;
+		public const int Layer21			=	1 << 21;
+		public const int Layer22			=	1 << 22;
+		public const int Layer23			=	1 << 23;
+		public const int Layer24			=	1 << 24;
+		public const int Layer25			=	1 << 25;
+		public const int Layer26			=	1 << 26;
+		public const int Layer27			=	1 << 27;
+		public const int Layer28			=	1 << 28;
+		public const int Layer29			=	1 << 29;
+		public const int Layer30			=	1 << 30;
+		public const int Layer31			=	1 << 31;
 
 
-
-
-
-        #if UNITY_EDITOR
-        public static int           customBeginIndex = 8;
-        public static string[]      customLayers = {"War_Terrain", "War_Unit", "War_Obstacle"};
-
-
-        [MenuItem("Edit/Game/SetEditorLayer")]
-        public static void SetEditorTag ()
-        {
-            SerializedObject tagManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0]);
-            SerializedProperty it = tagManager.GetIterator();
-            while (it.NextVisible(true))
-            {
-                if(it.name == "layers")
-                {
-                    int end = Mathf.Min(customBeginIndex + customLayers.Length, it.arraySize);
-                    for (int i = customBeginIndex; i < end; i++) 
-                    {
-                        SerializedProperty dataPoint = it.GetArrayElementAtIndex(i);
-                        dataPoint.stringValue = customLayers[i - customBeginIndex];
-                    }
-
-                    tagManager.ApplyModifiedProperties();
-                    if (customBeginIndex + customLayers.Length > it.arraySize)
-                    {
-                        Debug.LogFormat("<color=red>请在Edit/Project Settings/Tags And Layers编辑器Layers列表添加 {0} 个空位</color>", customBeginIndex + customLayers.Length - it.arraySize);
-                    }
-                    break;
-                }
-            }
-        }
-        #endif
-    }
+		public static int           customBeginIndex = 8;
+		public static string[]      customLayers = {"War_Terrain","War_Unit","War_Obstacle","Layer11","Layer12","Layer13","Layer14","Layer15","Layer16","Layer17","Layer18","Layer19","Layer20","Layer21","Layer22","Layer23","Layer24","Layer25","Layer26","Layer27","Layer28","Layer29","Layer30","Layer31"};
+	}
 }
