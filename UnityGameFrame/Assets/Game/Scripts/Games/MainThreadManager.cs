@@ -89,5 +89,25 @@ namespace ihaiu.gameframe
                 unityFixedUpdate();
         }
 
+        private Dictionary<IEnumerator, Coroutine> coroutines = new Dictionary<IEnumerator, Coroutine>();
+        public Coroutine StartCoroutine(IEnumerator routine)
+        {
+            Debug.Log(coroutines.ContainsKey(routine) + "   " + routine.ToString());
+            if (coroutines.ContainsKey(routine))
+            {
+                StopCoroutine(coroutines[routine]);
+                coroutines.Remove(routine);
+            }
+            Coroutine corutine = base.StartCoroutine(routine);
+            coroutines.Add(routine, corutine);
+            return corutine;
+        }
+
+        public void StopAllCoroutines()
+        {
+            coroutines.Clear();
+            base.StopAllCoroutines();
+        }
+
     }
 }

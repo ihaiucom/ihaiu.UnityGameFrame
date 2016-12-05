@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace ihaiu.gameframe
+namespace Games
 {
     public class GameLaunch : MonoBehaviour 
     {
