@@ -3,18 +3,22 @@ using System.Collections;
 using UnityEditor;
 using System.Diagnostics;
 
-public class GameMenuEditor
+namespace Games
 {
-	[MenuItem("Game/Tool/xlsx -> csv")]
-	public static void GenerateCSV()
+	public class GameMenuEditor
 	{
-		GenerateConfig.Generate();
-	}
+		[MenuItem("Game/Tool/xlsx -> csv")]
+		public static void GenerateCSV()
+		{
+			GenerateConfig.Generate();
+		}
 
 
-	[MenuItem("Game/Tool/Generate ConfigManager_List.cs")]
-	public static void GenerateConfigManager()
-	{
-		ConfigManagerEditor.GenerateConfigManager();
+		[MenuItem("Game/Tool/Generate ConfigManager_List.cs")]
+		public static void GenerateConfigManager()
+		{
+			ConfigManagerEditor.GenerateConfigManager();
+		}
 	}
+
 }
