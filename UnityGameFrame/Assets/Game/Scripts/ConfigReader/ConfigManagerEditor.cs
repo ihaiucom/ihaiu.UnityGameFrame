@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using System.Collections;
 using UnityEditor;
 using System.Reflection;
@@ -12,7 +13,6 @@ using Games;
 public class ConfigManagerEditor 
 {
 
-	[MenuItem("Game/Generate ConfigManager")]
 	public static void GenerateConfigManager()
 	{
 		List<Type> list = new List<Type>();
@@ -108,3 +108,4 @@ public class ConfigManagerEditor
 		return valA - valB;
 	}
 }
+#endif
