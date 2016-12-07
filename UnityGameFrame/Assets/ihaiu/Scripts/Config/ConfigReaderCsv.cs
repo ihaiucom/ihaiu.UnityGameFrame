@@ -13,8 +13,7 @@ namespace com.ihaiu
 
         virtual public void Load()
         {
-
-            Type t = typeof(T);
+			Type t = this.GetType();
             arrtr = t.GetCustomAttributes(typeof(ConfigCsvAttribute), false)[0] as ConfigCsvAttribute;
             ConfigSetting.Load(arrtr.assetName, ParseAsset);
         }

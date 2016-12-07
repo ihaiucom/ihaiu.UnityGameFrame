@@ -36,11 +36,6 @@ namespace com.ihaiu
 			}
 		}
 
-		internal void OnLoadManifest(IAssetBundleManager manifest)
-		{
-			PrepareFinal();
-		}
-
 
 		void UpdateAssetBundle()
 		{

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-namespace ihaiu.gameframe
+namespace Games
 {
     public class MainThreadManager : MonoBehaviour 
     {
@@ -90,7 +90,7 @@ namespace ihaiu.gameframe
         }
 
         private Dictionary<IEnumerator, Coroutine> coroutines = new Dictionary<IEnumerator, Coroutine>();
-        public Coroutine StartCoroutine(IEnumerator routine)
+		public Coroutine MStartCoroutine(IEnumerator routine)
         {
             Debug.Log(coroutines.ContainsKey(routine) + "   " + routine.ToString());
             if (coroutines.ContainsKey(routine))
@@ -103,7 +103,8 @@ namespace ihaiu.gameframe
             return corutine;
         }
 
-        public void StopAllCoroutines()
+
+		public void MStopAllCoroutines()
         {
             coroutines.Clear();
             base.StopAllCoroutines();

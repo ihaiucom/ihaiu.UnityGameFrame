@@ -12,6 +12,11 @@ public static class StringUtils
         return string.Format(formatter,content,args);
     }
 
+	/** 首字母小写 */
+	public static string FirstLower(this string str)
+	{
+		return char.ToLower(str[0]) + str.Substring(1); 
+	}
 
     public static string to0x(this int val)
     {

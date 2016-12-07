@@ -8,7 +8,7 @@ namespace com.ihaiu
     {
         public string       assetName;
         public bool         hasHeadPropId;
-        public ConfigCsvAttribute(string path, bool hasHeadPropId)
+		public ConfigCsvAttribute(string path, bool hasHeadPropId)
         {
             this.assetName = path;
             this.hasHeadPropId = hasHeadPropId;
