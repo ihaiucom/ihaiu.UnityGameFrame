@@ -535,27 +535,7 @@ namespace com.ihaiu
             }
         }
 
-        public void DespawnPool(string prefabName)
-        {
-            Transform prefab = this.prefabs[prefabName];
-            DespawnPool(prefab);
-        }
-
-        public void DespawnPool(Transform prefab)
-        {
-
-            for (int i = 0; i < this._prefabPools.Count; i++)
-            {
-                // Determine if the prefab was ever used as explained in the docs
-                //   I believe a comparison of two references is processor-cheap.
-                if (this._prefabPools[i].prefabGO == prefab.gameObject)
-                {
-                    PrefabPool prefabPool = this._prefabPools[i];
-
-                    break;
-                }
-            }
-        }
+      
 
 
         /// <description>

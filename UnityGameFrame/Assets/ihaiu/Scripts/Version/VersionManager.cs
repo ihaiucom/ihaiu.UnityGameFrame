@@ -26,6 +26,7 @@ namespace com.ihaiu
 
         public Action               finalCallback;
 
+		public VersionCheckState state = VersionCheckState.Normal;
         public bool yieldbreak = false;
         private Version appVer = new Version();
         private Version curVer = new Version();
@@ -172,7 +173,7 @@ namespace com.ihaiu
 				{
 	                serverVer.Parse(serverVersionInfo.version);
 
-	                VersionCheckState state = VersionCheck.CheckState(curVer, serverVer);
+					state = VersionCheck.CheckState(curVer, serverVer);
 
 	                switch(state)
 	                {

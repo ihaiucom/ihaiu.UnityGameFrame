@@ -46,33 +46,12 @@ namespace com.ihaiu
 		}
 
 
-		#region Event Handling
-		public delegate void OnPrepareFinal();
-
-		public OnPrepareFinal prepareFinal;
-		public void AddOnPrepareFinalDelegate(OnPrepareFinal call)
+		public IEnumerator Reinitialize()
 		{
-
-			prepareFinal += call;
+			yield return StartCoroutine(InitManifest());
+			yield return StartCoroutine(ReadFiles());
 		}
 
-		public void RemoveOnPrepareFinalDelegate(OnPrepareFinal call)
-		{
-			prepareFinal -= call;
-		}
-
-
-		public bool isPrepare = false;
-		private void PrepareFinal()
-		{
-			isPrepare = true;
-			if (prepareFinal != null)
-			{
-				prepareFinal();
-			}
-		}
-
-		#endregion Event Handling
 
 
 

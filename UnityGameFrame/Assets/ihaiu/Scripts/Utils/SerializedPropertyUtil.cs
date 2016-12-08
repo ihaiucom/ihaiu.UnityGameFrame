@@ -91,55 +91,38 @@ public static class SerializedPropertyUtil
 		{
 		case SerializedPropertyType.Integer:
 			return p.intValue;
-			break;
 		case SerializedPropertyType.Boolean:
 			return p.boolValue;
-			break;
 		case SerializedPropertyType.Float:
 			return p.floatValue;
-			break;
 		case SerializedPropertyType.String:
 			return p.stringValue;
-			break;
 		case SerializedPropertyType.Color:
 			return p.colorValue;
-			break;
 		case SerializedPropertyType.ObjectReference:
 			return p.objectReferenceValue;
-			break;
 		case SerializedPropertyType.LayerMask:
 			return p.intValue;
-			break;
 		case SerializedPropertyType.Enum:
 			return p.enumNames;
-			break;
 		case SerializedPropertyType.Vector2:
 			return p.vector2Value;
-			break;
 		case SerializedPropertyType.Vector3:
 			return p.vector3Value;
-			break;
 		case SerializedPropertyType.Vector4:
 			return p.vector4Value;
-			break;
 		case SerializedPropertyType.Rect:
 			return p.rectValue;
-			break;
 		case SerializedPropertyType.Character:
 			return p.stringValue;
-			break;
 		case SerializedPropertyType.AnimationCurve:
 			return p.animationCurveValue;
-			break;
 		case SerializedPropertyType.Bounds:
 			return p.boundsValue;
-			break;
 		case SerializedPropertyType.Gradient:
 			return p.animationCurveValue;
-			break;
 		case SerializedPropertyType.Quaternion:
 			return p.quaternionValue;
-			break;
 		}
 
 		return "Dont know";

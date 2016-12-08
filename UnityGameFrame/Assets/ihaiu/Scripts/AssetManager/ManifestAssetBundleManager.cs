@@ -77,7 +77,6 @@ namespace com.ihaiu
             yield return assetBundleRequest;
             assetBundleManifest = (AssetBundleManifest) assetBundleRequest.asset;
 
-            assetManager.OnLoadManifest(this);
         }
         #endregion
 
