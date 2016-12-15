@@ -61,5 +61,9 @@ namespace com.ihaiu
             configs.Clear();
             Load();
         }
+
+		virtual public void OnGameConfigLoaded()
+		{
+		}
     }
 }

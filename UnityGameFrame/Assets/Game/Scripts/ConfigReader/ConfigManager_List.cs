@@ -12,7 +12,7 @@ namespace Games
 		public MenuConfigReader	menu	= new MenuConfigReader();
 
 
-		private List<IConfigReader> _l;
+		private List<IConfigReader> _l = new List<IConfigReader>();
 		public List<IConfigReader> readerList
 		{
 			get

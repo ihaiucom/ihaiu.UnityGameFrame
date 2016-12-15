@@ -15,6 +15,8 @@ namespace Games
 				readerList[i].Load();
 				yield return 0;
 			}
+
+			OnGameConfigLoaded();
 		}
 
 		public IEnumerator Reload()
@@ -24,6 +26,17 @@ namespace Games
 			{
 				readerList[i].Reload();
 				yield return 0;
+			}
+
+			OnGameConfigLoaded();
+		}
+
+		public void OnGameConfigLoaded()
+		{
+			int count = readerList.Count;
+			for(int i = 0; i < count; i ++)
+			{
+				readerList[i].OnGameConfigLoaded();
 			}
 		}
 	}

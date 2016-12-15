@@ -8,5 +8,7 @@ namespace com.ihaiu
     {
         void Load();
         void Reload();
+
+		void OnGameConfigLoaded();
     }
 }

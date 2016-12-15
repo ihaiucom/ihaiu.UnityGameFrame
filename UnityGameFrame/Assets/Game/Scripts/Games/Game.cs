@@ -11,7 +11,8 @@ public class Game
 	public static MainThreadManager 	mainThread;
     public static AssetManager 			asset;
 	public static ConfigManager 		config;
-    public static int menu;
+	public static MenuManager 			menu;
+	public static ModuleManager			module;
     public static int pool;
     public static int proto;
     public static int audio;
@@ -27,6 +28,8 @@ public class Game
 		Game.go 			= go;
 		Game.mainThread		= go.AddComponent<MainThreadManager>();
 		Game.config 		= new ConfigManager();
+		Game.menu			= new MenuManager();
+		Game.module			= new ModuleManager();
 
         yield break;
     }
