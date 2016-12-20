@@ -14,7 +14,7 @@ namespace Games
 	public class ConfigManagerEditor 
 	{
 
-		public static void GenerateConfigManager()
+		public static void Generate()
 		{
 			List<Type> list = new List<Type>();
 

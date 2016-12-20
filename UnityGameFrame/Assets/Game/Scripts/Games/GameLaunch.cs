@@ -44,8 +44,6 @@ namespace Games
 
 			// 读取配置
 			yield return Game.config.Load();
-
-
 		}
 
 		/** 读取Config AssetBundle */

@@ -17,7 +17,13 @@ namespace Games
 		[MenuItem("Game/Tool/Generate ConfigManager_List.cs")]
 		public static void GenerateConfigManager()
 		{
-			ConfigManagerEditor.GenerateConfigManager();
+			ConfigManagerEditor.Generate();
+		}
+
+		[MenuItem("Game/Tool/Generate ModuleManager_List.cs")]
+		public static void GenerateModuleManager()
+		{
+			ModuleManagerEditor.Generate();
 		}
 	}
 
