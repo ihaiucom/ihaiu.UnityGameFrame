@@ -18,6 +18,12 @@ public class Game
     public static int audio;
     #endregion
 
+	#region global other
+	public static GameCamera 	camera 		= new GameCamera();
+	public static GameCanvas 	canvas		= new GameCanvas();
+	public static UILayer 		uiLayer 	= new UILayer();
+	#endregion
+
 
     #region user
     public static int user;
