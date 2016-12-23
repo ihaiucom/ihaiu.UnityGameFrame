@@ -65,5 +65,16 @@ namespace com.ihaiu
 		virtual public void OnGameConfigLoaded()
 		{
 		}
+
+        public T GetConfig(int id)
+        {
+            if (configs.ContainsKey(id))
+            {
+                return configs[id];
+            }
+
+            return default(T);
+        }
+
     }
 }

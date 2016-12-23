@@ -35,5 +35,16 @@ namespace Games
 		{
 			Game.menu.Close(menuId);
 		}
+
+        public void Back()
+        {
+            
+        }
+
+        public void SetBackMenu(int menuId)
+        {
+            
+        }
+
 	}
 }
