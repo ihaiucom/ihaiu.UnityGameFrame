@@ -13,6 +13,7 @@ public class Game
 	public static ConfigManager 		config;
 	public static MenuManager 			menu;
 	public static ModuleManager			module;
+	public static LoadManager			loader;
     public static int pool;
     public static int proto;
     public static int audio;
