@@ -23,6 +23,7 @@ public class Game
 	public static GameCamera 	camera 		= new GameCamera();
 	public static GameCanvas 	canvas		= new GameCanvas();
 	public static UILayer 		uiLayer 	= new UILayer();
+    public static GameCircle    cricle      = new GameCircle();
 	#endregion
 
 

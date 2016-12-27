@@ -5,6 +5,5 @@ namespace Games
 	{
 		Panel,
         Scene,
-        Loading,
 	}
 }

@@ -10,9 +10,10 @@ namespace Games
 
 		public MsgConfigReader	msg	= new MsgConfigReader();
 		public MenuConfigReader	menu	= new MenuConfigReader();
+		public LoadConfigReader	load	= new LoadConfigReader();
 
 
-		private List<IConfigReader> _l = new List<IConfigReader>();
+		private List<IConfigReader> _l;
 		public List<IConfigReader> readerList
 		{
 			get
@@ -21,6 +22,7 @@ namespace Games
 				{
 					_l.Add(msg);
 					_l.Add(menu);
+					_l.Add(load);
 
 				}
 				return _l;
