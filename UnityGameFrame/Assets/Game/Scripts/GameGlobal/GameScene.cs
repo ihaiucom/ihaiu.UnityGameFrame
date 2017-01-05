@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameScene 
 {
 	public static string Launch 	= "Launch";
+	public static string Main 		= "Main";
 	public static string War		= "War";
 
 	public static Scene CurrentScene
@@ -28,6 +29,14 @@ public class GameScene
 		get
 		{
 			return CurrentName == Launch;
+		}
+	}
+
+	public static bool IsMain
+	{
+		get
+		{
+			return CurrentName == Main;
 		}
 	}
 

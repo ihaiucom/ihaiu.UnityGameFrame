@@ -45,7 +45,15 @@ namespace Games
                     return;
                 }
 
-                menuCtl = new MenuCtl();
+				switch(menuConfig.type)
+				{
+					case MenuType.Scene:
+						menuCtl = new MenuCtlForScene();
+						break;
+					default:
+						menuCtl = new MenuCtlForPanel();
+						break;
+				}
                 menuCtl.menuId = menuId;
                 menuCtl.config = menuConfig;
                 menuCtl.module = Game.module.GetModule(menuId);
@@ -53,7 +61,36 @@ namespace Games
                 list.Add(menuCtl);
             }
 
-            menuCtl.Open();
+			Open(menuId, menuCtl);
+		}
+
+
+		public void Open(int menuId, MenuCtl menuCtl)
+		{
+			if (menuCtl == null)
+			{
+				Debug.LogErrorFormat("MenuManager Open menuCtl=null menuId={0}", menuId);
+				return;
+			}
+
+			if(dict.ContainsKey(menuId) && dict[menuId] != menuCtl)
+			{
+
+				menuCtl.menuId = menuId;
+
+				if(menuCtl.config == null)
+					menuCtl.config = Game.config.menu.GetConfig(menuId);
+
+				if(menuCtl.module == null) 
+					menuCtl.module = Game.module.GetModule(menuId);
+
+				dict[menuId].Destory();
+				list.Remove(dict[menuId]);
+				dict[menuId] = menuCtl;
+				list.Add(menuCtl);
+			}
+
+			menuCtl.Open();
 		}
 
 		public void Close(int menuId)
