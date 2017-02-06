@@ -15,19 +15,19 @@ namespace Games
 			/** 主场景 */
 			Layer_Home = 2,
 			/** 战斗UI */
-			Layer_War,
+			Layer_War = 3,
 			/** 模块 */
-			Layer_Module,
+			Layer_Module = 4,
 			/** 主UI */
-			Layer_MainUI,
+			Layer_MainUI = 5,
 			/** 对话框 */
-			Layer_Dialog,
+			Layer_Dialog = 6,
 			/** 引导 */
-			Layer_Guide,
+			Layer_Guide = 7,
 			/** 加载面板 */
-			Layer_Loader,
+			Layer_Loader = 8,
 			/** 浮动消息 */
-			Layer_FloatMsg,
+			Layer_FloatMsg = 9,
 		}
 
 

@@ -8,7 +8,31 @@ namespace com.ihaiu
 {
     public class AssetMenuItems 
     {
-       
+
+		[MenuItem ("资源管理/平台切换", false, 900)]
+		static void OpenWindow()
+		{
+			EditorWindow.GetWindow<CenterSwitcherWindow>("平台切换");
+		}
+
+        [MenuItem ("资源管理/版本设置面板", false, 900)]
+        public static void VersionReleaseWindowMenu()
+        {
+            VersionReleaseWindow.Open();
+        }
+
+
+        [MenuItem ("资源管理/版本推送面板", false, 900)]
+        public static void VersionPushWindowMenu()
+        {
+            VersionPushWindow.Open();
+        }
+
+        [MenuItem ("资源管理/版本信息编辑面板", false, 900)]
+        public static void VersionInfoWindowMenu()
+        {
+            VersionInfoWindow.Open();
+        }
 
 
 
@@ -49,23 +73,22 @@ namespace com.ihaiu
         }
 
 
-
-        [MenuItem("资源管理/Generator files.csv(StreamingAssets)")]
+        [MenuItem("资源管理/Generator AssetList_File.csv(StreamingAssets)")]
         public static void GeneratorFilesCsvForStreamingAssets()
         {
-            FilesCsvForStreamingAssets.Generator();
+            AssetListCsvFile.Generator();
         }
 
         [MenuItem("资源管理/Generator LoadAssetList.csv")]
         public static void GeneratorLoadAssetListCsv()
         {
-            LoadAssetListCsv.Generator();
+            AssetListCsvLoadMap.Generator();
         }
 
         [MenuItem("资源管理/Generator DontUnloadAssetList.csv")]
         public static void GeneratorDontUnloadAssetListCsv()
         {
-            DontUnloadAssetListCsv.Generator();
+            AssetListCsvDontUnload.Generator();
         }
 
         [MenuItem("资源管理/Clear Manifest Help File")]
@@ -76,12 +99,6 @@ namespace com.ihaiu
 
 
 
-        [MenuItem("资源管理/Generator AssetBundle Info")]
-        public static void GeneratorAssetBundleInfo()
-        {
-            AssetBundleEditor.GeneratorAssetBundleInfo();
-        }
-
 
 
         [MenuItem("资源管理/CleanCache")]
@@ -90,6 +107,27 @@ namespace com.ihaiu
             Caching.CleanCache();
         }
 
+
+
+
+        [MenuItem("资源管理/查看AssetBundle")]
+        public static void SeeAssetBundle()
+        {
+            SeeAssetBundleInfoWindow.Open();
+        }
+
+        [MenuItem("资源管理/生成ResZip")]
+        public static void GeneratorResZip()
+        {
+            ResZipEditor.Install.Generator();
+        }
+
+
+        [MenuItem("资源管理/删除Zip的StreamingAssets资源")]
+        public static void DeleteResZipForStreamingAssets()
+        {
+            ResZipEditor.Install.DeleteApp();
+        }
 
 
     }

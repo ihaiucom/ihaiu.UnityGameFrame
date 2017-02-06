@@ -34,6 +34,7 @@ namespace Games
 					if (tie.IsAssignableFrom(typ))
 					{
 						if(ignore.Contains(typ)) continue;
+
 						list.Add(typ);
 					}
 				}
@@ -72,7 +73,17 @@ namespace Games
 						string filedName = className.Replace("ConfigReader", "").FirstLower();
 
 						sw.WriteLine("\t\tpublic {0}	{1}	= new {0}();", className, filedName);
-						_l.WriteLine("\t\t\t\t\t_l.Add(" + filedName + ");");
+
+						ignoreAttibute[] atts = type.GetCustomAttributes(typeof(ignoreAttibute), false) as ignoreAttibute[];
+						if(atts.Length > 0)
+						{
+							_l.WriteLine("\t\t\t\t\t//_l.Add(" + filedName + ");");
+						}
+						else
+						{
+							_l.WriteLine("\t\t\t\t\t_l.Add(" + filedName + ");");
+						}
+
 					}
 
 
@@ -82,6 +93,7 @@ namespace Games
 					sw.WriteLine("\t\tpublic List<IConfigReader> readerList\n\t\t{");
 					sw.WriteLine("\t\t\tget\n\t\t\t{");
 					sw.WriteLine("\t\t\t\tif(_l == null)\n\t\t\t\t{");
+					sw.WriteLine("\t\t\t\t\t_l = new List<IConfigReader>();");
 					sw.WriteLine(_l.ToString());
 					sw.WriteLine("\t\t\t\t}");
 					sw.WriteLine("\t\t\t\treturn _l;");

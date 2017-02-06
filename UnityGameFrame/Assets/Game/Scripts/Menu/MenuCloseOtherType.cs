@@ -5,15 +5,15 @@ namespace Games
     public enum MenuCloseOtherType 
     {
         /** 不关闭任何面板 */
-        None,
+        None = 0,
 
         /** 除自己外的所有 */
-        ExceptSelf_All,
+        ExceptSelf_All = 1,
 
         /** 除自己外的所有模块层级面板 */
-        ExceptSelf_Module,
+        ExceptSelf_Module = 2,
 
         /** 相同层级的其他面板 */
-        ExceptSelf_SameLayer,
+        ExceptSelf_SameLayer = 3,
     }
 }

@@ -119,23 +119,23 @@ namespace com.ihaiu
 
               
 
-                if (currentDvancedSettingData.GetValue(DvancedSettingType.GameConstConfig))
+                if (currentDvancedSettingData.GetValue(DvancedSettingType.SettingConfig))
                 {
-                    GameConstConfig config = GameConstConfig.Load();
-                    config.DevelopMode  = false;
-                    config.Version      = version.ToConfig();
+                    SettingConfig config 	= SettingConfig.Load();
+					config.version.model  	= VersionSettingConfig.RunModel.TestVersion;
+					config.version.ver      = version.ToConfig();
                     config.Save();
                 }
 
 
                 if (currentDvancedSettingData.GetValue(DvancedSettingType.GeneratorLoadAssetListCsv))
                 {
-                    LoadAssetListCsv.Generator();
+                    AssetListCsvLoadMap.Generator();
                 }
 
                 if (currentDvancedSettingData.GetValue(DvancedSettingType.GeneratorStreamingAssetsFilesCSV))
                 {
-                    FilesCsvForStreamingAssets.Generator();
+                    AssetListCsvFile.Generator();
                 }
 
 
@@ -151,15 +151,32 @@ namespace com.ihaiu
 
                 if (currentDvancedSettingData.GetValue(DvancedSettingType.GenerateVersionInfo))
                 {
-                    FilesCsvForStreamingAssets.CopyStreamFilesCsvToVersion(version);
+                    AssetListCsvFile.CopyStreamFilesCsvToVersion(version);
                 }
 
 
                 if (currentDvancedSettingData.GetValue(DvancedSettingType.GeneratorUpdateAssetList))
                 {
-                    FilesCsvForStreamingAssets.GeneratorUpdateList(null);
+                    AssetListCsvFile.GeneratorUpdateList(null);
                 }
 
+
+                if (currentDvancedSettingData.GetValue(DvancedSettingType.GenerateResZip))
+                {
+                    ResZipEditor.Install.Generator();
+                }
+
+
+                if (currentDvancedSettingData.GetValue(DvancedSettingType.CopyWorkspaceStreamToStreamingAssets_UnResZip))
+                {
+                    ResZipEditor.Install.CopyToStreaming_UnZip();
+                }
+
+
+                if (currentDvancedSettingData.GetValue(DvancedSettingType.CopyWorkspaceStreamToStreamingAssets_All))
+                {
+                    ResZipEditor.Install.CopyToStreaming_All();
+                }
             }
             HGUILayout.EndCenterHorizontal();
 

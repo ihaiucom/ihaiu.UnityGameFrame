@@ -15,12 +15,15 @@ namespace Games
 
 		IEnumerator Install()
 		{
+
+			VersionManager versionManager = gameObject.AddComponent<VersionManager>();
+			yield return versionManager.CheckFirst();
+
 			// 初始化AssetManager，为了启动就能用它来加载资源
 			Game.asset = gameObject.AddComponent<AssetManager>();
 			yield return Game.asset.Initialize();
+			Game.cricle.Show();
 
-			// 版本检测
-			VersionManager versionManager = gameObject.AddComponent<VersionManager>();
 			yield return versionManager.CheckVersion();
 			if(versionManager.yieldbreak)
 				yield break;
@@ -36,7 +39,7 @@ namespace Games
 
 			// 读取Config AssetBundle
 			#if UNITY_EDITOR
-			if (!GameConst.DevelopMode)
+			if (Setting.version.model != VersionSettingConfig.RunModel.Develop)
 			#endif
 			{
 				yield return InitConfig();
@@ -44,12 +47,13 @@ namespace Games
 
 			// 读取配置
 			yield return Game.config.Load();
+//			Game.cricle.Hide();
 		}
 
 		/** 读取Config AssetBundle */
 		IEnumerator InitConfig()
 		{
-			string path = AssetManagerSetting.ConfigAssetBundleURL;
+			string path = AssetManagerSetting.FileURL.AssetBundleConfig;
 			WWW www = new WWW(path);
 			yield return www;
 

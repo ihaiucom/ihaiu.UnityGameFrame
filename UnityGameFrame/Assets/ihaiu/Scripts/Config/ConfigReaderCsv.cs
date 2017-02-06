@@ -20,6 +20,11 @@ namespace com.ihaiu
 
         virtual public void ParseAsset(string path, object obj)
         {
+			if(obj == null)
+			{
+				Debug.LogErrorFormat("{0}: obj={1}, path={2}", this, obj, path);
+				return;
+			}
             string txt = (string) obj;
             StringReader sr = new StringReader(txt);
 

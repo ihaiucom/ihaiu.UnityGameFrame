@@ -283,6 +283,7 @@ public static class StringUtils
         return src.Length > idx ? src[idx].ToUInt64() : 0;
     }
 
+
     public static bool GetBoolean(this string[] src, int idx)
     {
         return src.Length > idx ? src[idx].ToBoolean() : false;

@@ -7,9 +7,9 @@ using System;
 
 namespace com.ihaiu
 {
-    public class FilesCsvForStreamingAssets 
-    {
-
+	public class AssetListCsvFile 
+	{
+        
 
         public static string SerializeFile(string path, string md5)
         {
@@ -20,9 +20,14 @@ namespace com.ihaiu
         {
             List<string> fileList = new List<string>();
 
-            string platformRoot = AssetManagerSetting.EditorRootPlatform;
+            string platformRoot = AssetManagerSetting.EditorRoot.WorkspaceStreamPlatform;
 
-            string filecsv = AssetManagerSetting.EditorFileCsvForStreaming;
+            if (platformRoot.EndsWith("/"))
+            {
+                platformRoot = platformRoot.Substring(0, platformRoot.Length - 1);
+            }
+
+            string filecsv = AssetManagerSetting.EditorFilePath.AssetListFile;
             if (File.Exists(filecsv)) File.Delete(filecsv);
             PathUtil.CheckPath(filecsv);
 
@@ -48,9 +53,7 @@ namespace com.ihaiu
                     file = fileList[i];
                     if (file.IndexOf("test_") != -1 
                         || file.IndexOf("crash_report") != -1 
-                        || file.IndexOf("AssetBundleList.csv") != -1 
-                        || file.IndexOf("AssetList.csv") != -1
-                        || file.IndexOf("version_") != -1
+                        || file.IndexOf(AssetManagerSetting.FileName.AssetList_Version) != -1
                     )
                         continue;
 
@@ -63,7 +66,7 @@ namespace com.ihaiu
                 }
             }
 
-
+          
 
             // streamingAssetsPath下platform
             fileList.Clear();
@@ -77,15 +80,15 @@ namespace com.ihaiu
                 file = fileList[i];
                 path = file.Replace(platformRoot, "{0}");
                 md5 = PathUtil.md5file(file);
-
+              
 
                 fileinfo = SerializeFile(path, md5);
                 sw.WriteLine(fileinfo);
             }
-
+           
             List<string> others = new List<string>();
-            others.Add(AssetManagerSetting.EditorLoadAssetListPath);
-            others.Add(AssetManagerSetting.EditorDontUnloadAssetListPath);
+            others.Add(AssetManagerSetting.EditorFilePath.AssetListLoadMap);
+            others.Add(AssetManagerSetting.EditorFilePath.AssetListDontUnload);
 
             for(int i = 0; i < others.Count; i ++)
             {
@@ -95,7 +98,7 @@ namespace com.ihaiu
                 fileinfo = SerializeFile(path, md5);
                 sw.WriteLine(fileinfo);
             }
-
+           
 
 
 
@@ -105,37 +108,37 @@ namespace com.ihaiu
 
             EditorUtility.ClearProgressBar();
         }
-
-        /// <summary>
-        /// 遍历目录及其子目录
-        /// </summary>
-        static void Recursive(string path, List<string> fileList) {
-            string[] names = Directory.GetFiles(path);
-            string[] dirs = Directory.GetDirectories(path);
-            foreach (string filename in names) {
-                string ext = Path.GetExtension(filename);
+		
+		/// <summary>
+		/// 遍历目录及其子目录
+		/// </summary>
+		static void Recursive(string path, List<string> fileList) {
+			string[] names = Directory.GetFiles(path);
+			string[] dirs = Directory.GetDirectories(path);
+			foreach (string filename in names) {
+				string ext = Path.GetExtension(filename);
                 if (ext.Equals(".meta")) continue;
                 if (ext.Equals(".manifest")) continue;
-
-
-
+                    
+				
+				
                 string fn = Path.GetFileName(filename);
-                if(fn.Equals("files.csv")) continue;
-                if(fn.Equals("UpdateAssetList.csv")) continue;
-                if(fn.Equals("LoadAssetList.csv")) continue;
-                if(fn.Equals(".DS_Store")) continue;
-                if(fn.IndexOf(".") == 0) continue;
+                if(fn.Equals(AssetManagerSetting.FileName.AssetList_File)) continue;
+                if(fn.Equals(AssetManagerSetting.FileName.AssetList_Update)) continue;
+                if(fn.Equals(AssetManagerSetting.FileName.AssetList_LoadMap)) continue;
+				if(fn.Equals(".DS_Store")) continue;
+				if(fn.IndexOf(".") == 0) continue;
                 if(fn.IndexOf("test_") == 0) continue;
-
-                fileList.Add(filename.Replace('\\', '/'));
-            }
-            foreach (string dir in dirs) {
-                string dirName = Path.GetFileName(dir);
-                if(dirName.IndexOf(".") == 0) continue;
-                if(dirName.IndexOf("users") == 0) continue;
+				
+				fileList.Add(filename.Replace('\\', '/'));
+			}
+			foreach (string dir in dirs) {
+				string dirName = Path.GetFileName(dir);
+				if(dirName.IndexOf(".") == 0) continue;
+				if(dirName.IndexOf("users") == 0) continue;
                 Recursive(dir, fileList);
-            }
-        }
+			}
+		}
 
 
 
@@ -145,14 +148,14 @@ namespace com.ihaiu
         {
             string path = AssetManagerSetting.EditorGetVersionFileListPath(version.ToString());
             PathUtil.CheckPath(path);
-            File.Copy(AssetManagerSetting.EditorFileCsvForStreaming, path);
+            File.Copy(AssetManagerSetting.EditorFilePath.AssetListFile, path);
         }
 
 
         public static void GeneratorUpdateList(Version appVer)
         {
 
-            string path = AssetManagerSetting.EditorUpdateAssetListPath;
+            string path = AssetManagerSetting.EditorFilePath.AssetListUpdate;
             Debug.Log(path);
             PathUtil.CheckPath(path);
 
@@ -161,12 +164,12 @@ namespace com.ihaiu
             {
                 if (File.Exists(path))
                     File.Delete(path);
-                File.Copy(AssetManagerSetting.EditorFileCsvForStreaming, path);
+                File.Copy(AssetManagerSetting.EditorFilePath.AssetListFile, path);
                 return;
             }
             Debug.Log(appVer);
             AssetFileList app = AssetFileList.Read(AssetManagerSetting.EditorGetVersionFileListPath(appVer.ToString()));
-            AssetFileList curr = AssetFileList.Read(AssetManagerSetting.EditorFileCsvForStreaming);
+            AssetFileList curr = AssetFileList.Read(AssetManagerSetting.EditorFilePath.AssetListFile);
 
             AssetFileList diff = AssetFileList.DiffAssetFileList(app, curr);
             diff.Save(path);
@@ -175,7 +178,7 @@ namespace com.ihaiu
 
 
 
+      
 
-
-    }
+	}
 }

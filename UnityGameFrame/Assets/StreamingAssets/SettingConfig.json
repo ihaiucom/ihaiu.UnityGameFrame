@@ -1,0 +1,25 @@
+{
+    "app": {
+        "appName": "ihaiu",
+        "appPrefix": "ihaiu_"
+    },
+    "version": {
+        "updateEnableChangeCenterName": false,
+        "centerName": "Official",
+        "language": "ZH_CN",
+        "ver": "1.0.0",
+        "model": 0
+    },
+    "url": {
+        "WebUrl_Release": "http://www.ihaiu.com/",
+        "WebUrl_Develop": "http://localhost/"
+    },
+    "asset": {
+        "ForcedResourceAsynLoadWaitFrame": true,
+        "IsCacheResourceAsset": false,
+        "IsCacheAssetBundleAsset": false,
+        "CheckCacheAssetRate": 10.0,
+        "CacheAssetTime": 60.0,
+        "LoadTimeOut": 20
+    }
+}

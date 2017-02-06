@@ -163,12 +163,13 @@ namespace com.ihaiu
             downloadURL = "http://"+localIP+":7888/";
             Host = downloadURL;
 
-            Games.GameConstConfig gameConstConfig = Games.GameConstConfig.Load();
-            gameConstConfig.WebUrl_Develop = downloadURL;
-            gameConstConfig.Save();
+			Games.SettingConfig SettingConfig = Games.SettingConfig.Load();
+			SettingConfig.url.WebUrl_Develop = downloadURL;
+            SettingConfig.Save();
 
-            VersionInfo versionInfo = VersionInfo.Load(ServerRootPath);
-            versionInfo.version = gameConstConfig.Version;
+			string verinfoRelativePath = "/ver_" + SettingConfig.version.centerName.ToLower() + ".txt";
+            VersionInfo versionInfo = VersionInfo.Load(ServerRootPath + verinfoRelativePath);
+			versionInfo.version = SettingConfig.version.ver;
             if (ServerRootPath == AssetManagerSetting.EditorAssetBundleServerRoot_StreamingAssets)
             {
                 versionInfo.updateLoadUrl = downloadURL;
@@ -178,9 +179,7 @@ namespace com.ihaiu
                 versionInfo.updateLoadUrl = downloadURL + "StreamingAssets/";
             }
 
-
-
-            string versionPath = AssetManagerSetting.GetServerVersionInfoURL(ServerRootPath, gameConstConfig.CenterName) ;
+            string versionPath = ServerRootPath + verinfoRelativePath;
             versionInfo.Save(versionPath);
         }
 

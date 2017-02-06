@@ -27,6 +27,8 @@ namespace Games
                 manager.name = name;
                 manager.AddComponent<GameLaunch>();
             }
+
+			GameObject.DontDestroyOnLoad(manager);
         }
     }
 }

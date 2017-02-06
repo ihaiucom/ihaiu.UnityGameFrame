@@ -15,9 +15,9 @@ public class PlayerPrefsUtil
 
     public static string GetKey(string key, bool isBindUserId) {
         if (UseUserId && isBindUserId)
-            return GameConst.AppPrefix + GameConst.UserId + "_" + key;
+			return Setting.app.appPrefix + Game.user.uid + "_" + key;
         else
-            return GameConst.AppPrefix + "_" + key;
+			return Setting.app.appPrefix + "_" + key;
     }
 
 	

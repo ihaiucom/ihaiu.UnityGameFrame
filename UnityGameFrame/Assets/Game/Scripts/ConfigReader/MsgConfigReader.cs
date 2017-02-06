@@ -12,8 +12,8 @@ namespace Games
 		{
 			MsgConfig config = new MsgConfig();
 			config.id	= csv.GetInt32(GetHeadIndex("id"));
+			config.content	= csv.GetString(GetHeadIndex("content"));
 			config.type	= csv.GetInt32(GetHeadIndex("type"));
-			config.msg	= csv.GetString(GetHeadIndex("msg"));
 
 			configs.Add(config.id, config);
 		}

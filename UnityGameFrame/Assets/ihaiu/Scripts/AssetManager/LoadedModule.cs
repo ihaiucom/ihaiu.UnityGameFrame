@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using Games;
 
 namespace com.ihaiu
 {
@@ -21,12 +22,13 @@ namespace com.ihaiu
             {
                 if (string.IsNullOrEmpty(_name))
                 {
-//                    MenuConfig config = Coo.menuManager.configSet[moduleId];
-//                    if (config != null)
-//                    {
-//                        _name = config.name;
-//                    }
-//                    else
+					
+					MenuConfig config = Game.config.menu.GetConfig(moduleId);
+                    if (config != null)
+                    {
+                        _name = config.name;
+                    }
+                    else
                     {
                         _name = "未知";
                     }
@@ -70,8 +72,7 @@ namespace com.ihaiu
             {
                 if (!AssetManagerSetting.dontUnloadAssetFileList.Has(kvp.Key))
                 {
-                    //                    assetManager.Unload(kvp.Value.assetInfo.name, kvp.Value.referencedCount, moduleId == MenuType.WarScene);
-                    assetManager.Unload(kvp.Value.assetInfo.name, kvp.Value.referencedCount);
+					assetManager.Unload(kvp.Value.assetInfo.name, kvp.Value.referencedCount, false);
                     LoadedModuleAsset.Despawn(kvp.Value);
                     willRemoveKeys.Add(kvp.Key);
                 }

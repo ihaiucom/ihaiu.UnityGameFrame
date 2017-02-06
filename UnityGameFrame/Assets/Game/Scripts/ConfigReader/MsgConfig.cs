@@ -6,7 +6,7 @@ namespace Games
 	public class MsgConfig
 	{
 		public int 		id;
+		public string 	content;
 		public int 		type;
-		public string 	msg;
 	}
 }

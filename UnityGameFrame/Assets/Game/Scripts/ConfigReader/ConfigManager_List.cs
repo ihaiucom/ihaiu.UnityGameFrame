@@ -20,6 +20,7 @@ namespace Games
 			{
 				if(_l == null)
 				{
+					_l = new List<IConfigReader>();
 					_l.Add(msg);
 					_l.Add(menu);
 					_l.Add(load);

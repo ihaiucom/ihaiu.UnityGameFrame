@@ -6,11 +6,11 @@ using System.Collections.Generic;
 
 namespace com.ihaiu
 {
-    public class LoadAssetListCsv 
+    public class AssetListCsvLoadMap 
     {
         public static void Generator()
         {
-            string filesPath = AssetManagerSetting.EditorLoadAssetListPath;
+            string filesPath = AssetManagerSetting.EditorFilePath.AssetListLoadMap;
 
             if (File.Exists(filesPath))
             {
@@ -38,17 +38,17 @@ namespace com.ihaiu
 
 
 
-            DontUnloadAssetListCsv.Generator();
+            AssetListCsvDontUnload.Generator();
         }
 
         static void Resources(StreamWriter sw)
         {
-            if (!Directory.Exists(AssetManagerSetting.EditorRootResources))
+            if (!Directory.Exists(AssetManagerSetting.EditorRoot.Resources))
                 return;
-
+            
             List<string> list = new List<string>();
-            //            FindFolder(list, Application.dataPath);
-            list.Add(AssetManagerSetting.EditorRootResources);
+//            FindFolder(list, Application.dataPath);
+            list.Add(AssetManagerSetting.EditorRoot.Resources);
             if(list.Count == 0) return;
 
 
@@ -71,7 +71,7 @@ namespace com.ihaiu
                     if (ext.Equals(".meta")) continue;
                     string filename = Path.GetFileName(file);
                     if(filename.Equals(".DS_Store")) continue;
-                    if(filename.Equals("files.csv")) continue;
+                    if(filename.Equals(AssetManagerSetting.FileName.AssetList_File)) continue;
 
                     path = file.Replace(resourcePath , string.Empty);
                     if(!string.IsNullOrEmpty(ext)) path = path.Replace(ext, string.Empty);
@@ -119,7 +119,7 @@ namespace com.ihaiu
                 if (string.IsNullOrEmpty(importer.assetBundleName))
                 {
                     Debug.LogWarningFormat("MResource资源没有设置AssetBundleName  path={0}", filepath);
-                    //                    continue;
+//                    continue;
                 }
 
                 path = filepath.Replace(resourceRoot, "{0}");
@@ -230,6 +230,6 @@ namespace com.ihaiu
 
 
 
-
+    	
     }
 }

@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEditor;
 using System.Diagnostics;
+using com.ihaiu;
+using System.IO;
+using System.Linq;
 
 public class GenerateConfig
 {
@@ -19,5 +22,25 @@ public class GenerateConfig
 		Process p = Process.Start(start);
 		p.WaitForExit();
 		p.Close();
+
+		RemoveTmp();
+
+		AssetDatabase.Refresh();
+	}
+
+	public static void RemoveTmp()
+	{
+		string dir = AssetManagerSetting.EditorRoot.Config;
+		if(Directory.Exists(dir))
+		{
+			string[] files = Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories)
+				.Where(s => Path.GetFileName(s).StartsWith("~$")).ToArray();
+
+
+			for(int i = 0; i < files.Length; i ++)
+			{
+				File.Delete(files[i]);
+			}
+		}
 	}
 }

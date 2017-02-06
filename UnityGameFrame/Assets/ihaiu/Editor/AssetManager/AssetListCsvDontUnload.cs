@@ -6,11 +6,11 @@ using System.Collections.Generic;
 
 namespace com.ihaiu
 {
-    public class DontUnloadAssetListCsv 
+    public class AssetListCsvDontUnload 
     {
         public static void Generator()
         {
-            string filesPath = AssetManagerSetting.EditorDontUnloadAssetListPath;
+            string filesPath = AssetManagerSetting.EditorFilePath.AssetListDontUnload;
 
             if (File.Exists(filesPath))
             {
@@ -31,10 +31,10 @@ namespace com.ihaiu
 
 
             // Resources
-            Resources(sw, AssetManagerSetting.EditorRootResources, folders);
+            Resources(sw, AssetManagerSetting.EditorRoot.Resources, folders);
 
             // StreamingAssets
-            Resources(sw, AssetManagerSetting.EditorRootMResources, folders);
+            Resources(sw, AssetManagerSetting.EditorRoot.MResources, folders);
 
 
             sw.Close(); fs.Close();
@@ -77,7 +77,7 @@ namespace com.ihaiu
                     if (ext.Equals(".meta")) continue;
                     string filename = Path.GetFileName(file);
                     if(filename.Equals(".DS_Store")) continue;
-                    if(filename.Equals("files.csv")) continue;
+                    if(filename.Equals(AssetManagerSetting.FileName.AssetList_File)) continue;
 
                     path = file.Replace(resourcePath , string.Empty);
                     if(!string.IsNullOrEmpty(ext)) path = path.Replace(ext, string.Empty);
@@ -135,6 +135,6 @@ namespace com.ihaiu
 
 
 
-
+    	
     }
 }

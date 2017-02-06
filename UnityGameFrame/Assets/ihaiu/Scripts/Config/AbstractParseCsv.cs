@@ -48,6 +48,8 @@ namespace com.ihaiu
             {
                 return headKeyEns[enName];
             }
+
+			Debug.LogErrorFormat("{0}: headKeyEns[{1}] = -1", this, enName);
             return -1;
         }
 

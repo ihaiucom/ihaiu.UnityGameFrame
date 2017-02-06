@@ -116,12 +116,12 @@ namespace Games
 			switch(config.layout)
 			{
 			case MenuLayout.ScreenSize:
-				window.rectTransform.anchoredPosition = Vector2.zero;
+				window.rectTransform.offsetMin = Vector2.zero;
+				window.rectTransform.offsetMax = Vector2.zero;
 				break;
 
 			case MenuLayout.PositionZero:
-				window.rectTransform.offsetMin = Vector2.zero;
-				window.rectTransform.offsetMax = Vector2.zero;
+				window.rectTransform.anchoredPosition = Vector2.zero;
 				break;
 			}
 

@@ -15,20 +15,22 @@ namespace com.ihaiu
             HGUILayout.BeginCenterHorizontal();
             if (GUILayout.Button("生成版本信息", GUILayout.MinHeight(50), GUILayout.MaxWidth(200)))
             {
-                if (currentDvancedSettingData.GetValue(DvancedSettingType.GameConstConfig))
+				CenterSwitcher centerSwitcher = new CenterSwitcher();
+				centerSwitcher.DoSwitch(0);
+				
+                if (currentDvancedSettingData.GetValue(DvancedSettingType.SettingConfig))
                 {
-                    GameConstConfig config = GameConstConfig.Load();
-                    config.DevelopMode      = true;
-                    config.TestVersionMode  = false;
+                    SettingConfig config = SettingConfig.Load();
+					config.version.model = VersionSettingConfig.RunModel.Develop;
                     config.Save();
                 }
 
 
-                if (currentDvancedSettingData.GetValue(DvancedSettingType.Clear_AssetBundleName))
-                {
-                    AssetBundleEditor.ClearAssetBundleNames();
-                    AssetDatabase.RemoveUnusedAssetBundleNames();
-                }
+//                if (currentDvancedSettingData.GetValue(DvancedSettingType.Clear_AssetBundleName))
+//                {
+//                    AssetBundleEditor.ClearAssetBundleNames();
+//                    AssetDatabase.RemoveUnusedAssetBundleNames();
+//                }
 
 
                 if (currentDvancedSettingData.GetValue(DvancedSettingType.Set_AssetBundleName))
@@ -38,7 +40,25 @@ namespace com.ihaiu
 
                 if (currentDvancedSettingData.GetValue(DvancedSettingType.GeneratorLoadAssetListCsv))
                 {
-                    LoadAssetListCsv.Generator();
+                    AssetListCsvLoadMap.Generator();
+                }
+
+
+                if (currentDvancedSettingData.GetValue(DvancedSettingType.GenerateResZip))
+                {
+                    ResZipEditor.Install.Generator();
+                }
+
+
+                if (currentDvancedSettingData.GetValue(DvancedSettingType.CopyWorkspaceStreamToStreamingAssets_UnResZip))
+                {
+                    ResZipEditor.Install.CopyToStreaming_UnZip();
+                }
+
+
+                if (currentDvancedSettingData.GetValue(DvancedSettingType.CopyWorkspaceStreamToStreamingAssets_All))
+                {
+                    ResZipEditor.Install.CopyToStreaming_All();
                 }
 
             }

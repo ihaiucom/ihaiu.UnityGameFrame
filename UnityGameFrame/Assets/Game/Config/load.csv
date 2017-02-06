@@ -1,0 +1,5 @@
+id;名称;路径;打开加载面前是否转圈圈
+id;name;path;isShowCircle
+1;转圈;Modules/GameCirclePanel;0
+2;进入游戏;Modules/LoadGamePanel;1
+3;加载战斗;Modules/LoadWarPanel;1

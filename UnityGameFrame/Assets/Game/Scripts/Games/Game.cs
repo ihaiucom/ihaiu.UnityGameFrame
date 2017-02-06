@@ -28,7 +28,7 @@ public class Game
 
 
     #region user
-    public static int user;
+	public static UserData user = new UserData();
     #endregion
 
 	public static IEnumerator Install(GameObject go)

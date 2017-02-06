@@ -64,11 +64,11 @@ namespace com.ihaiu
 
             if(callback != null)
             {
-                callback(path, resourceRequest.asset, callbackArgs);
+				callback(path, resourceRequest.asset, callbackArgs);
             }
         }
 
-
+      
 
         LoadedResource GetLoadedResource(string path, Type type)
         {
@@ -182,7 +182,7 @@ namespace com.ihaiu
                 }
                 catch(Exception e)
                 {
-                    Debug.LogError("AssetManager_Resoures UnloadLoadedResourceCache e=" + e);
+                    
                 }
             }
 

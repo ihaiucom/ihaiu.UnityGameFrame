@@ -11,7 +11,7 @@ namespace com.ihaiu
     public partial class VersionReleaseWindow : EditorWindow
     {
         public static VersionReleaseWindow window;
-        [MenuItem ("资源管理/版本设置面板", false, 900)]
+//        [MenuItem ("资源管理/版本设置面板", false, 900)]
         public static void Open () 
         {
             window = EditorWindow.GetWindow <VersionReleaseWindow>("版本设置");
@@ -63,12 +63,12 @@ namespace com.ihaiu
         #region 高级设置
         public enum DvancedSettingType
         {
-            [HelpAttribute("生成LoadAssetList.csv")]
+            [HelpAttribute("生成 AssetList_LoadMap.csv")]
             GeneratorLoadAssetListCsv,
-            [HelpAttribute("生成StreamingAssets files.csv")]
+            [HelpAttribute("生成StreamingAssets AssetList_File.csv")]
             GeneratorStreamingAssetsFilesCSV,
-            [HelpAttribute("修改game_const.json")]
-            GameConstConfig,
+            [HelpAttribute("修改SettingConfig.json")]
+            SettingConfig,
             [HelpAttribute("生成版本信息文件")]
             GenerateVersionInfo,
             [HelpAttribute("生成更新列表")]
@@ -106,12 +106,21 @@ namespace com.ihaiu
 
             [HelpAttribute("PlayerSettings Version")]
             PlayerSettingsVersion,
+
+            [HelpAttribute("生成资源分包")]
+            GenerateResZip,
+
+            [HelpAttribute("拷贝非资源分包外的资源到APP")]
+            CopyWorkspaceStreamToStreamingAssets_UnResZip,
+
+            [HelpAttribute("拷贝所有的资源到APP")]
+            CopyWorkspaceStreamToStreamingAssets_All,
         }
 
         public string[] davancedSetingNames = new string[]{ 
-            "生成LoadAssetList.csv",
-            "生成StreamingAssets files.csv",
-            "修改game_const.json",
+            "生成 AssetList_LoadMap.csv",
+            "生成StreamingAssets AssetList_File.csv",
+            "修改SettingConfig.json",
             "生成版本信息文件",
             "生成更新列表",
 
@@ -129,6 +138,11 @@ namespace com.ihaiu
 
             "PlayerSettings",
             "PlayerSettingsVersion",
+
+
+            "生成资源分包",
+            "拷贝非资源分包外的资源到APP",
+            "拷贝所有的资源到APP",
 
             "",
             "",
@@ -198,7 +212,7 @@ namespace com.ihaiu
 
                     DvancedSettingData data = new DvancedSettingData(TabType.Develop);
                     _dvancedSettingDataDict.Add(data.tabType, data);
-                    data.Add(CreateDvancedSettingItem(DvancedSettingType.GameConstConfig));
+                    data.Add(CreateDvancedSettingItem(DvancedSettingType.SettingConfig));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.GeneratorLoadAssetListCsv));
 
 
@@ -212,13 +226,16 @@ namespace com.ihaiu
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.AB_AssetBundle));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.AB_luacode));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.AB_config));
-                    data.Add(CreateDvancedSettingItem(DvancedSettingType.GameConstConfig));
+                    data.Add(CreateDvancedSettingItem(DvancedSettingType.SettingConfig));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.GeneratorLoadAssetListCsv));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.GeneratorStreamingAssetsFilesCSV));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.PlayerSettings));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.PlayerSettingsVersion));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.GenerateVersionInfo));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.GeneratorUpdateAssetList, false));
+                    data.Add(CreateDvancedSettingItem(DvancedSettingType.GenerateResZip));
+                    data.Add(CreateDvancedSettingItem(DvancedSettingType.CopyWorkspaceStreamToStreamingAssets_UnResZip));
+                    data.Add(CreateDvancedSettingItem(DvancedSettingType.CopyWorkspaceStreamToStreamingAssets_All, false));
 
 
                     data = new DvancedSettingData(TabType.Patch);
@@ -226,16 +243,19 @@ namespace com.ihaiu
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.ClearAllPlatformDirctory, false));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.ClearOtherPlatformDirctory, false));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.ClearTestData, false));
-                    data.Add(CreateDvancedSettingItem(DvancedSettingType.Clear_AssetBundleName));
+                    data.Add(CreateDvancedSettingItem(DvancedSettingType.Clear_AssetBundleName, false));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.Set_AssetBundleName));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.AB_AssetBundle));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.AB_luacode));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.AB_config));
-                    data.Add(CreateDvancedSettingItem(DvancedSettingType.GameConstConfig));
+                    data.Add(CreateDvancedSettingItem(DvancedSettingType.SettingConfig));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.GeneratorLoadAssetListCsv));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.GeneratorStreamingAssetsFilesCSV));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.GenerateVersionInfo));
                     data.Add(CreateDvancedSettingItem(DvancedSettingType.GeneratorUpdateAssetList));
+                    data.Add(CreateDvancedSettingItem(DvancedSettingType.GenerateResZip, false));
+                    data.Add(CreateDvancedSettingItem(DvancedSettingType.CopyWorkspaceStreamToStreamingAssets_UnResZip, false));
+                    data.Add(CreateDvancedSettingItem(DvancedSettingType.CopyWorkspaceStreamToStreamingAssets_All, false));
                 }
                 return _dvancedSettingDataDict;
             }
@@ -245,6 +265,12 @@ namespace com.ihaiu
         #endregion
 
 
+        void OnFocus()
+        {
+            centerSwitcher.OnFocus();
+        }
+
+        public CenterSwitcher centerSwitcher = new CenterSwitcher();
 
         Vector2 scrollPos;
         void OnGUI ()
@@ -260,6 +286,15 @@ namespace com.ihaiu
 
 
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+            switch(tabType)
+            {
+                case TabType.App:
+                case TabType.Patch:
+                    GUILayout.Space(20);
+                    centerSwitcher.OnGUI();
+                    GUILayout.Space(20);
+                    break;
+            }
 
 
             GUILayout.Space(20);
@@ -358,24 +393,23 @@ namespace com.ihaiu
 
 
 
-                            case DvancedSettingType.GameConstConfig:
+                            case DvancedSettingType.SettingConfig:
 
-                                GameConstConfig config = GameConstConfig.Load();
+								SettingConfig config = SettingConfig.Load();
                                 switch (tabType)
                                 {
                                     case TabType.Develop:
-                                        config.DevelopMode      = true;
-                                        config.TestVersionMode  = false;
+										config.version.model      = VersionSettingConfig.RunModel.Develop;
                                         break;
 
-                                    case TabType.App:
-                                        config.DevelopMode  = false;
-                                        config.Version      = appVersion.ToConfig();
+									case TabType.App:
+										config.version.model      	= VersionSettingConfig.RunModel.TestVersion;
+										config.version.ver      	= appVersion.ToConfig();
                                         break;
 
-                                    case TabType.Patch:
-                                        config.DevelopMode  = false;
-                                        config.Version      = patchVersion.ToConfig();
+									case TabType.Patch:
+										config.version.model      	= VersionSettingConfig.RunModel.TestVersion;
+										config.version.ver      	= appVersion.ToConfig();
                                         break;
                                 }
 
@@ -384,12 +418,12 @@ namespace com.ihaiu
 
 
                             case DvancedSettingType.GeneratorStreamingAssetsFilesCSV:
-                                FilesCsvForStreamingAssets.Generator();
+                                AssetListCsvFile.Generator();
                                 break;
 
 
                             case DvancedSettingType.GeneratorLoadAssetListCsv:
-                                LoadAssetListCsv.Generator();
+                                AssetListCsvLoadMap.Generator();
                                 break;
 
 
@@ -416,12 +450,12 @@ namespace com.ihaiu
                                 {
                                     case TabType.App:
                                         appVersion.SetNowDatetime();
-                                        FilesCsvForStreamingAssets.CopyStreamFilesCsvToVersion(appVersion);
+                                        AssetListCsvFile.CopyStreamFilesCsvToVersion(appVersion);
                                         break;
 
                                     case TabType.Patch:
                                         patchVersion.SetNowDatetime();
-                                        FilesCsvForStreamingAssets.CopyStreamFilesCsvToVersion(patchVersion);
+                                        AssetListCsvFile.CopyStreamFilesCsvToVersion(patchVersion);
                                         break;
                                 }
                                 break;
@@ -430,13 +464,27 @@ namespace com.ihaiu
                                 switch (tabType)
                                 {
                                     case TabType.App:
-                                        FilesCsvForStreamingAssets.GeneratorUpdateList(null);
+                                        AssetListCsvFile.GeneratorUpdateList(null);
                                         break;
                                     case TabType.Patch:
-                                        FilesCsvForStreamingAssets.GeneratorUpdateList(compareVersion);
+                                        AssetListCsvFile.GeneratorUpdateList(compareVersion);
                                         break;
 
                                 }
+                                break;
+
+
+
+                            case DvancedSettingType.GenerateResZip:
+                                ResZipEditor.Install.Generator();
+                                break;
+
+                            case DvancedSettingType.CopyWorkspaceStreamToStreamingAssets_UnResZip:
+                                ResZipEditor.Install.CopyToStreaming_UnZip();
+                                break;
+
+                            case DvancedSettingType.CopyWorkspaceStreamToStreamingAssets_All:
+                                ResZipEditor.Install.CopyToStreaming_All();
                                 break;
 
                         }
@@ -469,7 +517,6 @@ namespace com.ihaiu
         void SetPlayerSettings(RuntimePlatform platform)
         {
             PlayerSettings.companyName = "mb";
-            PlayerSettings.productName = "空城计-全民竞技";
             PlayerSettings.showUnitySplashScreen = false;
 
 
@@ -533,7 +580,7 @@ namespace com.ihaiu
 
 
         bool testVersionModel_foldout = true;
-        bool testVersionModel_value = false;
+		VersionSettingConfig.RunModel testVersionModel_model;
         bool testVersionModel_webIsDevelop = false;
         void OnGUI_TestVersionModel()
         {
@@ -541,29 +588,26 @@ namespace com.ihaiu
 
             if (testVersionModel_foldout)
             {
-                if (GameConstConfig.last == null)
-                    GameConstConfig.Load();
+                if (SettingConfig.last == null)
+                    SettingConfig.Load();
 
 
                 GUILayout.BeginVertical(HGUILayout.boxMPStyle, GUILayout.Height(50));
-                testVersionModel_value = GameConstConfig.last.TestVersionMode;
-                GameConstConfig.last.TestVersionMode = EditorGUILayout.ToggleLeft("测试模拟版本模式", GameConstConfig.last.TestVersionMode);
-                if (testVersionModel_value != GameConstConfig.last.TestVersionMode)
+				testVersionModel_model = SettingConfig.last.version.model;
+				SettingConfig.last.version.model = (VersionSettingConfig.RunModel) EditorGUILayout.EnumPopup("运行模式",  SettingConfig.last.version.model);
+				if (testVersionModel_model != SettingConfig.last.version.model)
                 {
-                    testVersionModel_value = GameConstConfig.last.TestVersionMode;
-                    if (testVersionModel_value)
-                    {
-                        GameConstConfig.last.DevelopMode = false;
-                    }
+					testVersionModel_model = SettingConfig.last.version.model;
+                   
 
-                    GameConstConfig.last.Save();
+                    SettingConfig.last.Save();
                 }
 
 
-                testVersionModel_webIsDevelop = EditorGUILayout.ToggleLeft("WebUrl Is Develop", GameConst.WebUrlIsDevelop);
-                if (testVersionModel_webIsDevelop != GameConst.WebUrlIsDevelop)
+				testVersionModel_webIsDevelop = EditorGUILayout.ToggleLeft("WebUrl Is Develop", Setting.url.WebUrlIsDevelop);
+				if (testVersionModel_webIsDevelop != Setting.url.WebUrlIsDevelop)
                 {
-                    GameConst.WebUrlIsDevelop = testVersionModel_webIsDevelop;
+					Setting.url.WebUrlIsDevelop = testVersionModel_webIsDevelop;
                 }
 
                 GUILayout.EndVertical();
