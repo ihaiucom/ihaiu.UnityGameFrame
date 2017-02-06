@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AssetSetting : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+namespace Games
+{
+	public class AssetSetting : AbstractSetting<AssetSetting>
+	{
+		public override void Set ()
+		{
+			
+		}
 	}
 }
